@@ -25,9 +25,11 @@ Chrome 插件作用
 1、动态注入或执行JS
 通过chrome.tabs.executeScript来执行脚本，从而实现访问web页面的DOM
 
-2、获取当前标签页ID
+2、标签页操作
 
 ```javascript
+// 获取当前标签页ID
+// chrome.tabs.query 根据条件查询标签页
 function getCurrentTabId(callback)
 {
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs)
@@ -36,6 +38,20 @@ function getCurrentTabId(callback)
     }
   );
 }
+
+// 设置指定 id 标签页为当前标签页
+// chrome.tabs.update 根据 id 条件更新标签页属性
+chrome.tabs.update(id, {
+  "active": true
+}, function () {
+  console.log('设置当前为抢购页面');
+});
+
+// 打开新的指定 URL 的标签页
+// chrome.tabs.create 打开新的标签页
+chrome.tabs.create({
+  url: currentTask.url
+});
 ```
 
 3、本地存储
@@ -72,6 +88,8 @@ chrome.notifications.create(null, {
 流程图
 
 按步骤开发介绍
+1）添加 manifest.json 基础配置
+2）开发 popup page
 
 ## 总结
 

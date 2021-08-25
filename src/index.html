@@ -16,7 +16,6 @@
     <p>当前时间：<span id="currentTime">xxxx-xx-xx hh:mm:ss</span></p>
   </div>
   <div id="skTaskList" class="sk-popup-body">
-    <div class="sk-task-empty">暂无秒杀任务~</div>
   </div>
   <div id="skTaskTemplate" style="display: none;">
     <div class="sk-task-item">
@@ -24,7 +23,7 @@
       <ul>
         <li>
           <span>URL</span>
-          <a class="sk-task-url" href="http://baidu.com" field="url">https://detail.tmall.com/xxxxxxxxxxx</a></li>
+          <span class="sk-task-url" field="url">https://detail.tmall.com/xxxxxxxxxxx</span></li>
         <li>
           <span>路径</span>
           <span field="path">body</span>
@@ -39,11 +38,11 @@
         </li>
         <li>
           <span>秒杀频率</span>
-          <span field="restTime">500</span>
+          <span field="frequency">500</span>
         </li>
         <li>
           <span>秒杀次数</span>
-          <span field="restTime">10</span>
+          <span field="count">10</span>
         </li>
       </ul>
       <div class="sk-task-operate">
@@ -55,5 +54,7 @@
     </div>
     <div class="sk-task-empty">暂无秒杀任务~</div>
   </div>
+  <script type="text/javascript" src="lib/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="js/popup.js"></script>
 </body>
 </html>

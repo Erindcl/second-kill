@@ -86,12 +86,7 @@
   color: #252A3D;
 }
 .sk-task-url {
-  color: #252A3D;
-  width: 400px;
-  display: inline-block;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
+  cursor: pointer;
 }
 .sk-task-rest-time {
   color: #FF5B68;
