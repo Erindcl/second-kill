@@ -1,0 +1,12 @@
+{
+  "name": "秒杀助手",
+  "description" : "秒杀助手插件",
+  "version": "1.0",
+  "manifest_version": 2,
+
+  "browser_action": {
+    "default_popup": "index.html",
+    "default_icon": "images/alarm.png",
+    "default_title": "秒杀助手"
+  }
+}

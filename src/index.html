@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>天猫秒杀助手</title>
+  <link href="css/index.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <div class="sk-popup-header">
+    <h3>
+      <span>任务列表</span>
+      <span id="addSkTask" class="add-task">新建秒杀任务</span>
+    </h3>
+    <p>当前时间：<span id="currentTime">xxxx-xx-xx hh:mm:ss</span></p>
+  </div>
+  <div id="skTaskList" class="sk-popup-body">
+    <div class="sk-task-empty">暂无秒杀任务~</div>
+  </div>
+  <div id="skTaskTemplate" style="display: none;">
+    <div class="sk-task-item">
+      <div class="sk-task-title">xxxxxxxxx</div>
+      <ul>
+        <li>
+          <span>URL</span>
+          <a class="sk-task-url" href="http://baidu.com" field="url">https://detail.tmall.com/xxxxxxxxxxx</a></li>
+        <li>
+          <span>路径</span>
+          <span field="path">body</span>
+        </li>
+        <li>
+          <span>秒杀时间</span>
+          <span field="killTime">xxxx-xx-xx hh:mm:ss</span>
+        </li>
+        <li>
+          <span>剩余时间</span>
+          <span class="sk-task-rest-time" field="restTime">hh:mm:ss</span>
+        </li>
+        <li>
+          <span>秒杀频率</span>
+          <span field="restTime">500</span>
+        </li>
+        <li>
+          <span>秒杀次数</span>
+          <span field="restTime">10</span>
+        </li>
+      </ul>
+      <div class="sk-task-operate">
+        <span class="sk-task-status">运行中</span>
+        <span class="sk-task-start">启动</span>
+        <span class="sk-task-stop">暂停</span>
+        <span class="sk-task-delete">删除</span>
+      </div>
+    </div>
+    <div class="sk-task-empty">暂无秒杀任务~</div>
+  </div>
+</body>
+</html>
