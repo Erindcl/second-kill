@@ -11,31 +11,23 @@ $(document).ready(function () {
   updateTime(currentTime);
 
   // 任务列表
-  let tasks = [{
-    title: 'xxxx',
-    url: 'xxxxxx',
-    killTime: '2021-08-25T17:30:13',
-    path: 'body > div',
-    status: 0,
-    id: 1
-  }];
+  let tasks = [];
 
   // 新建任务
   $("#addSkTask").click(() => {
-    // let query = { active: true, currentWindow: true };
-    // chrome.tabs.query(query, (tabs) => {
-    //   chrome.tabs.executeScript(tabs[0].id, { file: 'js/addTask.js'});
-    // });
+    let query = { active: true, currentWindow: true };
+    chrome.tabs.query(query, (tabs) => {
+      chrome.tabs.executeScript(tabs[0].id, { file: 'js/addTask.js'});
+    });
   });
 
   // 加载任务列表数据
-  // chrome.storage.local.get({
-  //   'tasks': []
-  // }, (value) => {
-  //   tasks = value.tasks;
-  //   renderTask(tasks);
-  // });
-  renderTask(tasks);
+  chrome.storage.local.get({
+    'tasks': []
+  }, (value) => {
+    tasks = value.tasks;
+    renderTask(tasks);
+  });
 
   // 任务列表操作监听
   $(document).delegate(".sk-task-operate span", "click", function () {
@@ -75,9 +67,9 @@ $(document).ready(function () {
     }
 
     // 更新任务列表
-    // chrome.storage.local.set({
-    //   "tasks": tasks
-    // });
+    chrome.storage.local.set({
+      "tasks": tasks
+    });
   });
 
   // 点击任务列表中的 URL 打开地址
@@ -86,23 +78,22 @@ $(document).ready(function () {
     for (let i = 0; i < tasks.length; i++) {
       if (tasks[i].id == $(this).attr("taskId")) {
         currentTask = tasks[i];
-        console.log(currentTask.url)
-        // chrome.tabs.query({
-        //   url: currentTask.url
-        // }, function (results) {
-        //   if (results != null && results.length > 0) {
-        //     chrome.tabs.update(results[0].id, {
-        //       "active": true
-        //     }, function () {
-        //       console.log('设置当前为抢购页面');
-        //     });
-        //   } else {
-        //     console.log('打开抢购页面');
-        //     chrome.tabs.create({
-        //       url: currentTask.url
-        //     });
-        //   }
-        // });
+        chrome.tabs.query({
+          url: currentTask.url
+        }, function (results) {
+          if (results != null && results.length > 0) {
+            chrome.tabs.update(results[0].id, {
+              "active": true
+            }, function () {
+              console.log('设置当前为抢购页面');
+            });
+          } else {
+            console.log('打开抢购页面');
+            chrome.tabs.create({
+              url: currentTask.url
+            });
+          }
+        });
       }
     }
   });
@@ -132,14 +123,15 @@ $(document).ready(function () {
         }
         itemDom.find(".sk-task-status").css("color", color);
         itemDom.find(".sk-task-status").text(statusText);
-        itemDom.find(".sk-task-title").text(ele.title);
-        itemDom.find(".sk-task-title").attr("title", ele.title);
+        itemDom.find(".sk-task-title").text(ele.name);
+        itemDom.find(".sk-task-title").attr("title", ele.name);
         itemDom.find("span[field='url']").text(ele.url);
         itemDom.find("span[field='url']").attr("title", ele.url);
         itemDom.find("span[field='url']").attr("taskId", ele.id);
         itemDom.find("span[field='path']").text(ele.path);
         itemDom.find("span[field='path']").attr("title", ele.path);
         itemDom.find("span[field='killTime']").text(ele.killTime.replace("T", " "));
+        itemDom.find("span[field='restTime']").attr("killTime", ele.killTime);
         itemDom.find("span[field='restTime']").text(getRestTime(new Date(ele.killTime).getTime() - currentTime));
         itemDom.find("span[field='frequency']").text(ele.frequency);
         itemDom.find("span[field='count']").text(ele.count);
@@ -159,25 +151,23 @@ function updateTime(currentTime) {
   let timer = setInterval(() => {
     currentTime += 1000;
     $("#currentTime").text(formatDate(currentTime));
-    $("span[datafld='leftTime']").each(() => {
-      $(this).text(getLeftTime(parseInt($(this).attr("killTime")) - currentTime + 1000));
+    $("span[field='restTime']").each(function() {
+      $(this).text(getRestTime(new Date($(this).attr("killTime")).getTime() - currentTime + 1000));
     });
   }, 1000);
-  if (oldTimer != null) {
+  if (oldTimer !== null) {
     clearInterval(oldTimer);
   }
-
-  // //更新Background的时间 开始
-  // let port = chrome.extension.connect({
-  //   name: "update currentTime"
-  // });
-  // port.postMessage(currentTime);
-  // port.onMessage.addListener(function (msg) {
-  //   console.log("后台反馈：" + msg);
-  // });
-  // //更新Background的时间 结束
-
   oldTimer = timer;
+
+  // 更新Background的时间
+  let port = chrome.extension.connect({
+    name: "update currentTime"
+  });
+  port.postMessage(currentTime);
+  port.onMessage.addListener(function (msg) {
+    console.log("后台反馈：" + msg);
+  });
 }
 
 /**

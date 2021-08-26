@@ -3,10 +3,33 @@
   "description" : "秒杀助手插件",
   "version": "1.0",
   "manifest_version": 2,
-
   "browser_action": {
     "default_popup": "index.html",
     "default_icon": "images/alarm.png",
     "default_title": "秒杀助手"
-  }
+  },
+  "permissions": [
+    "tabs",
+    "storage",
+    "notifications",
+    "activeTab",
+    "cookies",
+    "http://*/*",
+    "https://*/*"
+  ],
+  "background": {
+    "scripts": ["lib/jquery-3.2.1.min.js","js/background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"], 
+      "js": ["lib/jquery-3.2.1.min.js", "js/secondKill.js"],
+      "css" : ["css/addTask.css"]
+    }
+  ],
+  "web_accessible_resources": [
+    "page/addTask.html",
+    "lib/*/*/*",
+    "js/addTask.js"
+  ]
 }

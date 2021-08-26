@@ -88,20 +88,16 @@
     newTask.frequency = frequency;
     newTask.count = count;
     newTask.status = 0;
-    // chrome.storage.local.get({"tasks": []}, function(value){
-    //   let tasks = value.tasks;
-    //   tasks.push(newTask);
-    //   chrome.storage.local.set({"tasks": value.tasks}, function() {
-    //       $(".sk-target-btn").removeClass("sk-target-btn");
-    //       $("#skAddTaskCard").remove();
-    //       window.removeEventListener('mouseover', windowListener);
-    //       alert("新增成功！");
-    //   });
-    // });
-    console.log(newTask);
-    $(".sk-target-btn").removeClass("sk-target-btn");
-    $("#skAddTaskCard").remove();
-    window.removeEventListener('mouseover', windowListener);
+    chrome.storage.local.get({"tasks": []}, function(value){
+      let tasks = value.tasks;
+      tasks.push(newTask);
+      chrome.storage.local.set({"tasks": value.tasks}, function() {
+          $(".sk-target-btn").removeClass("sk-target-btn");
+          $("#skAddTaskCard").remove();
+          window.removeEventListener('mouseover', windowListener);
+          alert("新增成功！");
+      });
+    });
   });
 
   function windowListener(e) {

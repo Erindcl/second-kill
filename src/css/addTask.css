@@ -7,6 +7,7 @@
   z-index: 20000;
   border-radius: 3px;
   box-sizing: border-box;
+  background: #fff;
 }
 #skAddTaskCard > .card-header {
   height: 30px;
