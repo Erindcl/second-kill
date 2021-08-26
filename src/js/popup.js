@@ -208,13 +208,13 @@ function formatDate(nowTime, type) {
   let date = new Date(nowTime);
   let y = date.getFullYear();
   let m = date.getMonth() + 1;
-  m = m < 10 ? ('0' + m) : m;
   let d = date.getDate();
-  d = d < 10 ? ('0' + d) : d;
   let h = date.getHours();
-  h = h < 10 ? ('0' + h) : h;
   let minute = date.getMinutes();
   let second = date.getSeconds();
+  m = m < 10 ? ('0' + m) : m;
+  d = d < 10 ? ('0' + d) : d;
+  h = h < 10 ? ('0' + h) : h;
   minute = minute < 10 ? ('0' + minute) : minute;
   second = second < 10 ? ('0' + second) : second;
   if (type === 'date') {

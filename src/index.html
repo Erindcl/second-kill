@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>天猫秒杀助手</title>
   <link href="css/index.css" rel="stylesheet" type="text/css">
+  <link href="css/addTask.css" rel="stylesheet" type="text/css">
 </head>
 <body>
   <div class="sk-popup-header">
@@ -53,6 +54,39 @@
       </div>
     </div>
     <div class="sk-task-empty">暂无秒杀任务~</div>
+  </div>
+  <div id="skAddTaskCard">
+    <div class="card-header">
+      新增秒杀任务
+    </div>
+    <div class="card-body">
+      <ul class="sk-add-task-form">
+        <li>
+          <span>商品名称</span>
+          <input id="skTaskName" disabled value="毛豆十元一斤" placeholder="请输入商品名称" />
+        </li>
+        <li>
+          <span>节点路径</span>
+          <input id="skTaskPath" disabled value="body > #secKillBtn" placeholder="请输入节点路径" />
+        </li>
+        <li>
+          <span>秒杀时间</span>
+          <input id="skTaskKillTime" type="datetime-local" step="1" placeholder="请选择秒杀时间" />
+        </li>
+        <li>
+          <span>秒杀频率(ms)</span>
+          <input id="skTaskFrequency" value="500" placeholder="请输入秒杀频率" />
+        </li>
+        <li>
+          <span>秒杀次数</span>
+          <input id="skTaskCount" value="10" placeholder="请输入秒杀次数" />
+        </li>
+      </ul>
+    </div>
+    <div class="card-footer">
+      <span id="submitAddTsk">确定</span>
+      <span id="cancleAddTsk">取消</span>
+    </div>
   </div>
   <script type="text/javascript" src="lib/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" src="js/popup.js"></script>

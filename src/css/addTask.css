@@ -1,0 +1,104 @@
+#skAddTaskCard {
+  width: 520px;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  box-shadow: 0 0 7px 0 rgb(0 0 0 / 30%) !important;
+  z-index: 20000;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+#skAddTaskCard > .card-header {
+  height: 30px;
+  line-height: 30px;
+  padding: 12px;
+  font-size: 14px;
+  background-color: rgba(244, 246, 248, 0.8);
+}
+#skAddTaskCard > .card-body {
+  min-height: 100px;
+  padding: 24px 20px 12px;
+}
+#skAddTaskCard > .card-footer {
+  height: 60px;
+  border-top: 1px solid rgba(192, 195, 204, 0.55);
+  display: flex;
+  padding: 0px 12px;
+  align-items: center;
+  justify-content: flex-end;
+}
+#skAddTaskCard > .card-footer > span {
+  font-size: 12px;
+  display: inline-block;
+  width: 80px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 3px;
+  border: 1px solid rgba(192, 195, 204, 0.55);
+  cursor: pointer;
+}
+#skAddTaskCard > .card-footer > span:first-child {
+  background-color: #3A72FF;
+  border-color: #3A72FF;
+  color: #fff;
+  margin-right: 4px;
+}
+#skAddTaskCard > .card-footer > span:first-child:hover {
+  background-color: #497DFF;
+  border-color: #497DFF;
+}
+#skAddTaskCard > .card-footer > span:last-child:hover {
+  color: #3A72FF;
+  border-color: #3A72FF;
+}
+.sk-add-task-form {
+  margin: 0px;
+  list-style: none;
+  padding: 0px;
+}
+.sk-add-task-form input {
+  height: 30px;
+  line-height: 30px;
+  box-sizing: border-box;
+  margin: 0;
+  list-style: none;
+  position: relative;
+  display: inline-block;
+  width: 70%;
+  min-width: 0;
+  padding: 0px 8px;
+  color: #252A3D;
+  font-size: 13px;
+  background-color: #fff;
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+  transition: all .3s;
+}
+.sk-add-task-form input:hover,
+.sk-add-task-form input:focus {
+  border: 1px solid #3A72FF;
+  outline: none;
+}
+.sk-add-task-form input:disabled {
+  background-color: #f5f5f5;
+  border-color: #d9d9d9;
+  box-shadow: none;
+  cursor: not-allowed;
+  color: #C0C3CC;
+}
+.sk-add-task-form > li {
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  align-items: center;
+  height: 30px;
+  margin-bottom: 12px;
+  font-size: 13px;
+}
+.sk-add-task-form > li > span {
+  width: 100px;
+  color: #666A77;
+  text-align: left;
+}
