@@ -66,8 +66,9 @@
           <input id="skTaskName" disabled value="毛豆十元一斤" placeholder="请输入商品名称" />
         </li>
         <li>
-          <span>节点路径</span>
-          <input id="skTaskPath" disabled value="body > #secKillBtn" placeholder="请输入节点路径" />
+          <span>秒杀节点路径</span>
+          <input id="skTaskPath" style="width: 65%;" disabled value="" placeholder="body > #secKillBtn" />
+          <a id="resetSKPath">重选</a>
         </li>
         <li>
           <span>秒杀时间</span>
@@ -85,10 +86,11 @@
     </div>
     <div class="card-footer">
       <span id="submitAddTsk">确定</span>
-      <span id="cancleAddTsk">取消</span>
+      <span id="cancelAddTsk">取消</span>
     </div>
   </div>
   <script type="text/javascript" src="lib/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" src="js/popup.js"></script>
+  <script type="text/javascript" src="js/addTask.js"></script>
 </body>
 </html>

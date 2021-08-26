@@ -66,7 +66,7 @@
   list-style: none;
   position: relative;
   display: inline-block;
-  width: 70%;
+  width: 80%;
   min-width: 0;
   padding: 0px 8px;
   color: #252A3D;
@@ -101,4 +101,28 @@
   width: 100px;
   color: #666A77;
   text-align: left;
+}
+.sk-target-btn {
+  text-shadow: 0 0 8px 0 #FF5B68 !important;
+  box-shadow: 0 0 8px 0 #FF5B68 !important;
+  cursor: copy !important;
+  transition: all .3s;
+}
+#resetSKPath {
+  font-size: 12px;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 3px;
+  border: 1px solid rgba(192, 195, 204, 0.55);
+  text-decoration: none;
+  transition: all .3s;
+  margin-left: 8px;
+}
+#resetSKPath:hover {
+  color: #3A72FF;
+  border-color: #3A72FF;
 }
