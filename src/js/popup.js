@@ -105,6 +105,9 @@ $(document).ready(function () {
         let itemDom = $("#skTaskTemplate .sk-task-item").clone();
         let statusText = '运行中';
         let color = GREEN_COLOR;
+        if(new Date(ele.killTime).getTime() - new Date().getTime() <= 0) {
+          ele.status = 2; //已过期
+        }
         switch (ele.status) {
           case 0:
             statusText = '运行中';
@@ -152,7 +155,13 @@ function updateTime(currentTime) {
     currentTime += 1000;
     $("#currentTime").text(formatDate(currentTime));
     $("span[field='restTime']").each(function() {
-      $(this).text(getRestTime(new Date($(this).attr("killTime")).getTime() - currentTime + 1000));
+      let restTimeNum = new Date($(this).attr("killTime")).getTime() - currentTime + 1000;
+      $(this).text(getRestTime(restTimeNum));
+      if (restTimeNum <= 0) {
+        let taskStatusDom = $(this).parent().parent().parent().find('.sk-task-status');
+        taskStatusDom.text('已过期');
+        taskStatusDom.css("color", '#FF5B68');
+      }
     });
   }, 1000);
   if (oldTimer !== null) {

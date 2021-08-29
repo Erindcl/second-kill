@@ -32,16 +32,21 @@ function rotateTask(currentTime) {
       }
       for (let i = 0; i < tasks.length; i++) {
         // 只检查运行中任务
+        console.log('检查 task');
         if (tasks[i].status !== 0) {
           continue;
         }
+        console.log('执行 secKill1111');
         let timeDifference = new Date(tasks[i].killTime) - currentTime; // 秒杀时间与当前时间差
-        if (timeDifference >= 0 && timeDifference <= 600) {
+        console.log(timeDifference);
+        if (timeDifference >= 0 && timeDifference < 500) {
           // 异步执行点击事件
           let tabId = null;
+          console.log('查询任务url:---------', tasks[i].url);
           chrome.tabs.query({
             url: tasks[i].url
           }, function (results) {
+            console.log('查询到的tab:---------', results);
             if (!results || results.length === 0) {
               return false;
             }
@@ -50,6 +55,7 @@ function rotateTask(currentTime) {
             chrome.tabs.executeScript(tabId, {
               code: "secKill(" + tasks[i].id + ");"
             });
+            submitOrder();
           });
         }
       }
@@ -59,5 +65,24 @@ function rotateTask(currentTime) {
     clearInterval(oldTimer);
   }
   oldTimer = timer;
+}
+
+function submitOrder() {
+  let timeCount = 0;
+  console.log('执行了 submitOrder');
+  let timer = setInterval(() => {
+    // 当前 tab (即提交订单)
+    chrome.tabs.query({active: true, currentWindow: true}, function(tab) {
+      chrome.tabs.executeScript(tab.id, {
+        code: "submitBtnClick();"
+      });
+    });
+
+    timeCount += 500;
+    if (timer && timeCount === 5000) {
+      clearInterval(timer);
+      timer = null;
+    }
+  }, 500);
 }
 

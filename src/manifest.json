@@ -23,7 +23,7 @@
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"], 
-      "js": ["lib/jquery-3.2.1.min.js", "js/secondKill.js"],
+      "js": ["lib/jquery-3.2.1.min.js", "js/secondKill.js", "js/submitBtnClick.js"],
       "css" : ["css/addTask.css"]
     }
   ],

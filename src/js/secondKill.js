@@ -24,7 +24,10 @@ function secKill(taskId) {
  */
 function dealTask(task) {
   let count = 1;
+  console.log("dealTask 开始执行");
   let timer = setInterval(() => {
+    console.log("dealTask 执行了");
+    console.log(count);
     $(task.path).each(function () {
       this.click();
     });
