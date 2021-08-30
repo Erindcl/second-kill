@@ -8,6 +8,12 @@
     "default_icon": "images/alarm.png",
     "default_title": "秒杀助手"
   },
+  "icons":
+  {
+    "16": "images/alarm.png",
+    "48": "images/alarm.png",
+    "128": "images/alarm.png"
+  },
   "permissions": [
     "tabs",
     "storage",
