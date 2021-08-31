@@ -227,22 +227,74 @@ chrome.storage.local.set({color: 'blue'}, function() {
 });
 ```
 
+更多 chrome api 见 [chrome api 文档](https://developer.chrome.com/extensions/api_index)
+
 ## 秒杀插件开发
 
-预览效果
+> 前提：秒杀前需确保用户已登陆以及选择了购买商品的类型规格等
 
-流程图
+一般天猫秒杀步骤
 
-按步骤开发介绍
-1）添加 manifest.json 基础配置
-2）开发 popup page
-3）开发 addTask.js
-4）开发 background.js
-5）开发 secondKill.js 和 submitBtnClick.js
+- 在商品详情页中，秒杀时间一到立马点击购买按钮
+- 紧接着，在订单详情页中，点击提交订单(此时已锁定商品，可稍后付款)
 
-## 总结
+插件的 TO DO LIST
 
-好用 Chrome 插件推荐
+- 获取用户设置的秒杀时间以及需点击的秒杀按钮
+- 后台设置定时器检查是否到达指定秒杀时间
+- 秒杀时间到，模拟点击秒杀按钮，随后点击提交按钮
+- 可视化任务列表，便于查看已添加任务
 
-参考文章
+根据插件各组成成分及其特点，梳理需求点：
+
+1. popup：已添加任务列表、新增任务按钮、当前时间
+2. 动态注入 JS：添加新增任务表单（可供用户设定秒杀时间以及秒杀节点等属性）
+3. background：定时检查任务是否到达秒杀时间并异步处理任务
+4. 动态注入 JS：秒杀按钮点击，提交按钮点击
+
+实现预览效果：
+
+![preview](doc/preview.gif)
+
+### 目录结构
+
+```txt
+根目录
+├── manifest.json   // 插件配置
+├── index.html      // popup page
+├── css             // 存放 popup page 样式以及其他样式
+├── images          // 存放图片资源，包括插件图标等
+├── js              // 存放 JS 文件，包含 popup、background 以及 content-scripts 使用到的 JS
+└── lib             // 资源库，存放 jQuery 等框架
+```
+
+### 分步骤开发
+
+（1）添加 manifest.json 基础配置
+（2）开发 popup page（index.html)，展示已添加任务列表、新增任务按钮、当前时间
+
+![popup_preview](doc/popup_preview.jpg)
+
+（3）开发 addTask.js，添加新增任务表单
+
+![add_task_preview](doc/add_task_preview.jpg)
+
+（4）开发 background.js，定时检查任务并异步处理任务
+（5）开发 secondKill.js（秒杀按钮点击） 和 submitBtnClick.js（提交按钮点击）
+
+## 附录
+
+#### 好用 Chrome 插件推荐
+
+- 沙拉查词：划词翻译
+- Tampermonkey：脚本管理器
+- Sourcegraph：Github 代码在线查看工具
+- GitZip for github：可单独下载 Github 上某个文件
+
+插件下载网址： [极简插件（不用墙](https://chrome.zzzmh.cn/index)
+
+#### 参考文章
+
 [【干货】Chrome插件(扩展)开发全攻略](https://www.cnblogs.com/liuxianan/p/chrome-plugin-develop.html#blog-comments-placeholder)
+
+[谷歌(Chrome)浏览器插件开发教程](https://www.jianshu.com/p/51c650f98d9c)

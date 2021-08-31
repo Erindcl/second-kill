@@ -148,7 +148,7 @@ $(document).ready(function () {
 });
 
 /**
- * 更新 popup page 的当前时间，剩余时间和设定后台的时间
+ * 更新 popup page 的当前时间，剩余时间
  */
 function updateTime(currentTime) {
   let timer = setInterval(() => {
@@ -168,15 +168,6 @@ function updateTime(currentTime) {
     clearInterval(oldTimer);
   }
   oldTimer = timer;
-
-  // 更新Background的时间
-  let port = chrome.extension.connect({
-    name: "update currentTime"
-  });
-  port.postMessage(currentTime);
-  port.onMessage.addListener(function (msg) {
-    console.log("后台反馈：" + msg);
-  });
 }
 
 /**
