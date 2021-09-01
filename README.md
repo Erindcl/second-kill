@@ -65,6 +65,7 @@
       "run_at": "document_start"
     }
   ],
+
   // 权限申请
   "permissions":
   [
