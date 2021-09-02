@@ -116,10 +116,10 @@ content-scripts 和原始页面共享 DOM，但是不共享 JS。所以，注入
 
 此外，content-scripts 只能访问以下 4 种 `chrome.xxx.api`, 其他的都不可以。不过，这些 API 绝大部分时候都够用了。
 
+- chrome.storage
 - chrome.extension.[getURL | inIncognitoContext | lastError | onRequest | sendRequest]
 - chrome.i18n
 - chrome.runtime.[connect | getManifest | getURL | id | onConnect | onMessage | sendMessage]
-- chrome.storage
 
 #### 消息通信
 
@@ -156,10 +156,8 @@ popup 或者 background 向 content-scripts 主动发送消息需要使用 `chro
 
 ```javascript
 // background.js 或者 popup.js
-chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
-  chrome.tabs.sendMessage(tabs[0].id, { value:'你好，我是 popup（background）！' }, function (response) {
-    console.log('收到回复：' + response);
-  });
+chrome.tabs.sendMessage(tabId, { value:'你好，我是 popup（background）！' }, function (response) {
+  console.log('收到回复：' + response);
 });
 
 // content-script.js
@@ -169,7 +167,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 });
 ```
 
-此外，content-script 也可以使用 `chrome.runtime.sendMessage` 方法主动发消息给 popup 或者 background。同时，popup 或者 background则需要使用 `chrome.runtime.onMessage.addListener` 方法监听来自 content-script 的消息。
+此外，content-script 也可以使用 `chrome.runtime.sendMessage` 方法主动发消息给 popup 或者 background。同时，popup 或者 background 则需要使用 `chrome.runtime.onMessage.addListener` 方法监听来自 content-script 的消息。
 
 ```javascript
 // content-script.js
@@ -215,7 +213,7 @@ chrome.tabs.query({ url:  'http://xxxx' }, function (results) {
 
 3. 本地存储
 
-本地存储使用 `chrome.storage`，针对插件全局的，即使你在background中保存的数据，在content-script也能获取到。有 `chrome.storage.sync`（跟随当前登录用户自动同步） 和 `chrome.storage.local` 2种方式可供选择。
+本地存储使用 `chrome.storage`，针对插件全局的，即使你在 background 中保存的数据，在 content-script 也能获取到。有 `chrome.storage.sync`（跟随当前登录用户自动同步） 和 `chrome.storage.local` 2种方式可供选择。
 
 ```javascript
 // 读取数据，第一个参数是指定要读取的key以及设置默认值

@@ -32,7 +32,6 @@
     }
   ],
   "web_accessible_resources": [
-    "page/addTask.html",
     "lib/*/*/*",
     "js/addTask.js"
   ]
