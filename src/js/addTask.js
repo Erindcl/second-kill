@@ -44,12 +44,12 @@
     document.getElementsByTagName("body")[0].appendChild(taskElement);
   }
 
+  // 设置秒杀名称
+  $("#skTaskName").val(document.title);
+
   // 根据光标定位元素
   let targetSelected = false;
   window.addEventListener('mouseover', windowListener);
-
-  // 设置秒杀名称
-  $("#skTaskName").val(document.title);
 
   // 设置秒杀时间
   $("#skTaskKillTime").val(formatDate(new Date().getTime()));

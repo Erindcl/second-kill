@@ -96,7 +96,7 @@ popup 是浏览器右上角插件图标时打开的一个小窗口网页，焦�
 
 由于单击图标打开面，焦点离开又立即关闭，所以 popup 页面的生命周期一般很短，需要长时间运行的代码不要写在 popup 页面中。
 
-在权限上，几乎可以调用所有的 Chrome 扩展 API（除了devtools），而且它可以无限制跨域。它和 background 非常类似，之间最大的不同在于生命周期的不同。
+在权限上，几乎可以调用所有的 Chrome 扩展 API（除了devtools），而且它可以无限制跨域。
 
 #### background
 
@@ -104,7 +104,7 @@ background 是一个常驻的页面。进入 chrome://extensions/，点击对应
 
 ![background.html](doc/background.jpg)
 
-background 的生命周期是插件中所有类型页面中最长的，它随着浏览器的打开而打开，随着浏览器的关闭而关闭，所以通常把需要一直运行的、启动就运行的、全局的代码放在 background 里面。background 的权限也非常高，跟 popup 类似。
+background 的生命周期是插件中所有类型页面中最长的，它随着浏览器的打开而打开，随着浏览器的关闭而关闭，所以通常把需要一直运行的、启动就运行的、全局的代码放在 background 里面。background 的权限也非常高，跟 popup 类似。它和 popup 之间最大的不同在于生命周期的不同。
 
 #### content-scripts
 
